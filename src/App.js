@@ -1,5 +1,5 @@
-import { useQuery, gql } from "@apollo/client";
-import "./App.css";
+import { useQuery, gql } from '@apollo/client';
+import './App.css';
 
 const GET_LAUNCHES = gql`
   query GetLaunches {
@@ -29,22 +29,26 @@ function App() {
       {data.launches.map((launch) => (
         <div className="launch-card">
           <h2 className="launch-title">{launch.mission_name}</h2>
-          <p className="launch-date">{launch.launch_date_utc}</p>  
-          <p className="launch-video-link"><a
+          <p className="launch-date">{launch.launch_date_utc}</p>
+          <p className="launch-video-link">
+            <a
               href={launch.links.video_link}
               rel="noopener noreferrer"
               target="_blank"
             >
               video link
-            </a></p>
-            <p className="launch-article-link"><a
+            </a>
+          </p>
+          <p className="launch-article-link">
+            <a
               href={launch.links.article_link}
               rel="noopener noreferrer"
               target="_blank"
             >
               article link
-            </a></p>
-            <p className="launch-details">{launch.details}</p>
+            </a>
+          </p>
+          <p className="launch-details">{launch.details}</p>
         </div>
       ))}
     </div>
