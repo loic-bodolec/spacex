@@ -3,7 +3,8 @@ import "./App.css";
 
 const GET_LAUNCHES = gql`
   query GetLaunches {
-    launches(limit: 5) {
+    launches(limit: 12) {
+      mission_name
       launch_date_utc
       launch_success
       rocket {
@@ -11,6 +12,7 @@ const GET_LAUNCHES = gql`
       }
       links {
         video_link
+        article_link
       }
       details
     }
@@ -25,7 +27,25 @@ function App() {
   return (
     <div className="App">
       {data.launches.map((launch) => (
-        <li>{launch.launch_date_utc}</li>
+        <div className="launch-card">
+          <h2 className="launch-title">{launch.mission_name}</h2>
+          <p className="launch-date">{launch.launch_date_utc}</p>  
+          <p className="launch-video-link"><a
+              href={launch.links.video_link}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              video link
+            </a></p>
+            <p className="launch-article-link"><a
+              href={launch.links.article_link}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              article link
+            </a></p>
+            <p className="launch-details">{launch.details}</p>
+        </div>
       ))}
     </div>
   );
